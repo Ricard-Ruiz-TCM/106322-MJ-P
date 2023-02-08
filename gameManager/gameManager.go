@@ -14,8 +14,8 @@ components {
   }
 }
 components {
-  id: "canvas"
-  component: "/main/canvas.gui"
+  id: "ten"
+  component: "/assets/prefabs/ten.factory"
   position {
     x: 0.0
     y: 0.0

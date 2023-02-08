@@ -1,6 +1,6 @@
 components {
-  id: "button"
-  component: "/button/button.script"
+  id: "ten"
+  component: "/assets/prefabs/ten.script"
   position {
     x: 0.0
     y: 0.0
@@ -16,7 +16,7 @@ components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/assets/tilesources/button.tilesource\"\n"
+  data: "tile_set: \"/assets/tilesources/plusten.tilesource\"\n"
   "default_animation: \"anim\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"

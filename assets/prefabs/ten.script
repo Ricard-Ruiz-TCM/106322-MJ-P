@@ -1,0 +1,45 @@
+
+function init(self)
+	self.time = 0
+	self.speed = 50
+	self.point_time = 3
+	self.position = go.get_position()
+	self.width = go.get("#sprite", hash("size")).x / 2
+	self.destiny = vmath.vector3()
+	addjustPosition(self)
+	changeDestiny(self)
+end
+
+function update(self, dt)
+
+	self.position = self.position + (self.speed * dt * self.direction)
+
+	if (vmath.length(self.position - self.destiny) < 1) then
+		changeDestiny(self)
+	end
+	
+	go.set_position(self.position)
+	
+	self.time = self.time + dt
+	if (self.time >= self.point_time) then
+		self.time = 0
+		msg.post("gameManager#gameManager", "addPoint")
+	end
+	
+end
+
+function changeDestiny(self)
+	self.destiny = vmath.vector3(math.random(screen_width), math.random(screen_hight), 0)
+	self.direction = vmath.normalize(self.destiny - self.position)
+	print(self.direction)
+end
+
+function addjustPosition(self)
+	if (self.position.x - self.width) < 0 then
+		self.position.x = self.position.x + self.width
+	end
+	if (self.position.x + self.width > screen_width) then
+		self.position.x = self.position.x - self.width
+	end
+	go.set_position(self.position)
+end

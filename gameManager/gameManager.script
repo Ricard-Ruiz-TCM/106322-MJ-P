@@ -1,53 +1,27 @@
 
-local clicks = 0
-
-local click_text
+screen_width = 960
+screen_hight = 640
 
 function init(self)
-	click_text = gui.get_node("clicks")
-	print (click_text)
-end
-
-function final(self)
-	-- Add finalization code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
-
-function update(self, dt)
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
-end
-
-function fixed_update(self, dt)
-	-- This function is called if 'Fixed Update Frequency' is enabled in the Engine section of game.project
-	-- Can be coupled with fixed updates of the physics simulation if 'Use Fixed Timestep' is enabled in Physics section of game.project
-	-- Add update code here
-	-- Learn more: https://defold.com/manuals/script/
-	-- Remove this function if not needed
+	self.clicks = 0	
+	self.ten_items = {}
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("onClick") then
-		clicks = clicks + 1
+	if message_id == hash("addPoint") then
+		onAddPoint(self)
 	end
 end
 
-function on_input(self, action_id, action)
-	-- Add input-handling code here. The game object this script is attached to
-	-- must have acquired input focus:
-	--
-	--    msg.post(".", "acquire_input_focus")
-	--
-	-- All mapped input bindings will be received. Mouse and touch input will
-	-- be received regardless of where on the screen it happened.
-	-- Learn more: https://defold.com/manuals/input/
-	-- Remove this function if not needed
+function onAddPoint(self)
+	self.clicks = self.clicks + 1
+	msg.post("canvas#canvas", "addPoint", { string = tostring(self.clicks), int = self.clicks})
+	
+	local mod = self.clicks % 10
+	if mod == 0 then
+		table.insert(self.ten_items, factory.create("#ten"))
+	end
+
 end
 
-function on_reload(self)
-	-- Add reload-handling code here
-	-- Learn more: https://defold.com/manuals/hot-reload/
-	-- Remove this function if not needed
-end
+	
