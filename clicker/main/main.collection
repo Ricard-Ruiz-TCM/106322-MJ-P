@@ -1,10 +1,10 @@
 name: "default"
 instances {
   id: "gameManager"
-  prototype: "/gameManager/gameManager.go"
+  prototype: "/objects/gameManager/gameManager.go"
   position {
-    x: 0.0
-    y: 0.0
+    x: 480.0
+    y: 320.0
     z: 0.0
   }
   rotation {
@@ -21,11 +21,11 @@ instances {
 }
 instances {
   id: "button"
-  prototype: "/button/button.go"
+  prototype: "/objects/button/button.go"
   position {
     x: 640.0
     y: 331.0
-    z: 0.0
+    z: 1.0
   }
   rotation {
     x: 0.0
@@ -41,7 +41,7 @@ instances {
 }
 instances {
   id: "canvas"
-  prototype: "/main/canvas.go"
+  prototype: "/objects/canvas/canvas.go"
   position {
     x: 0.0
     y: 0.0

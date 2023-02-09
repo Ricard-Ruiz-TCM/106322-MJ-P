@@ -1,5 +1,5 @@
 [project]
-title = Desktop game
+title = Clicker
 
 [bootstrap]
 main_collection = /main/main.collectionc
