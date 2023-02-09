@@ -1,13 +1,17 @@
 
+go.property("point_time", 3)
+go.property("speed", 75)
+go.property("time_alive", 10)
+
 function init(self)
 	self.time = 0
-	self.speed = 50
-	self.point_time = 3
-	self.position = go.get_position()
+	self.total_time = 0
+	self.position = vmath.vector3(math.random(screen_width), math.random(screen_hight), 0)
 	self.width = go.get("#sprite", hash("size")).x / 2
 	self.destiny = vmath.vector3()
 	addjustPosition(self)
 	changeDestiny(self)
+	sound.play("#fxSpawn")
 end
 
 function update(self, dt)
@@ -21,9 +25,15 @@ function update(self, dt)
 	go.set_position(self.position)
 	
 	self.time = self.time + dt
+	self.total_time = self.total_time + dt
 	if (self.time >= self.point_time) then
 		self.time = 0
 		msg.post("gameManager#gameManager", "addPoint")
+	end
+
+	if (self.total_time >= self.time_alive) then
+		sound.play("#fxDie")
+		go.delete()
 	end
 	
 end
@@ -31,7 +41,6 @@ end
 function changeDestiny(self)
 	self.destiny = vmath.vector3(math.random(screen_width), math.random(screen_hight), 0)
 	self.direction = vmath.normalize(self.destiny - self.position)
-	print(self.direction)
 end
 
 function addjustPosition(self)

@@ -5,6 +5,7 @@ screen_hight = 640
 function init(self)
 	self.clicks = 0	
 	self.ten_items = {}
+	sound.play("#backgroundMusic")
 end
 
 function on_message(self, message_id, message, sender)
@@ -19,7 +20,7 @@ function onAddPoint(self)
 	
 	local mod = self.clicks % 10
 	if mod == 0 then
-		table.insert(self.ten_items, factory.create("#ten"))
+		factory.create("#ten")
 	end
 
 end
