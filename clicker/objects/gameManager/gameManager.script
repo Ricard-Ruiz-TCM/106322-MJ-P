@@ -1,12 +1,15 @@
 
 -- Screen Size 
-screen_w = 960
-screen_h = 640
+screen_w = 0
+screen_h = 0
 
 -- Init
 function init(self)
 	self.clicks = 0	
 	sound.play("#backgroundMusic")
+
+	-- Tamaño del display
+	screen_w, screen_h = window.get_size()
 end
 
 -- OnMessage

@@ -30,7 +30,8 @@ end
 -- Método para comprobar la colision con raycast del punto de click
 -- Pillar el radio ahí del gráfico por que es redondo => cutre :(
 function checkWithRaycast(self, clickPos)
-	local result = physics.raycast(clickPos, go.get_position(), { hash("button") })
-	print(result)
-	return true
+	-- devuelve un not por que cuando hacemos un raycast desde donde clicamos hasta el botton,
+	-- siempre funciona, en plan, hacemos un raycast al boton, excepto cuando estamos sobre el mismo botton, por que el 
+	-- rayo, no sale desde fuera y colisiona, no es un raycast del eje Z, sino sobre el plano XY
+	return not physics.raycast(clickPos, go.get_position(), { hash("button") })
 end

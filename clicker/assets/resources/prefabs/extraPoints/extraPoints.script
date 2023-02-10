@@ -23,6 +23,7 @@ function init(self)
 	sound.play("#sfxSpawn")
 end
 
+-- Update
 function update(self, dt)
 
 	-- Update del tiempo
@@ -48,7 +49,6 @@ function move(self, dt)
 	self.position = self.position + (self.speed * dt * self.direction)
 	go.set_position(self.position)
 	return vmath.length(self.position - self.destiny) < self.arrive_distance
-	
 end
 
 -- Método para comprobar si toca sumar puntos
